@@ -17,7 +17,11 @@ function Post({ post }) {
                 <Typography variant="body2">{moment(post.creator).fromNow()}</Typography>
             </div>
             <div className={classes.overlay}>
-                <Button style={{ color: "white" }} size="small" onClick={() => { }}>
+                <Button
+                    style={{ color: "white" }}
+                    size="small"
+                    onClick={() => { }}
+                >
                     <MoreHorizIcon />
                 </Button>
             </div>
