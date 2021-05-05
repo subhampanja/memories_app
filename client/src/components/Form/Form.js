@@ -9,6 +9,7 @@ import useStyles from "./styles"
 // GET THE CURRENT ID
 
 function Form({ currentId, setCurrentId }) {
+
     const [postData, setPostdata] = useState({
         creator: "",
         title: "",
@@ -36,10 +37,12 @@ function Form({ currentId, setCurrentId }) {
         e.preventDefault();
 
         if (setCurrentId) {
-            dispatch(updatePost(setCurrentId, postData))
+            alert("data have")
+            // dispatch(updatePost(setCurrentId, postData))
         }
         else {
-            dispatch(createPost(postData))
+            alert("data dont have")
+            // dispatch(createPost(postData))
         }
 
     }
