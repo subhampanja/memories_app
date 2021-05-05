@@ -1,15 +1,14 @@
-import React, {useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import FileBase from "react-file-base64";
-import { useDispatch } from "react-redux";
-import { createPost,updatePost } from "../../actions/posts";
-import {useSelector} from "react-redux"; 
+import { useDispatch, useSelector } from "react-redux";
+import { createPost, updatePost } from "../../actions/posts";
 
 import useStyles from "./styles"
 
 // GET THE CURRENT ID
 
-function Form({currentId, setCurrentId}) {
+function Form({ currentId, setCurrentId }) {
     const [postData, setPostdata] = useState({
         creator: "",
         title: "",
@@ -17,22 +16,29 @@ function Form({currentId, setCurrentId}) {
         tags: "",
         selectedFile: ""
     })
-    const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null );
-    const classes = useStyles()
-    const dispatch = useDispatch()
+    const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null);
+    const classes = useStyles();
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        if(post) setPostdata(post)
-    },[post])
-    
+        if (post) setPostdata(post)
+    }, [post])
 
+
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+
+    //     dispatch(createPost(postData))
+
+    // }
+    
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if(setCurrentId){
+        if (setCurrentId) {
             dispatch(updatePost(setCurrentId, postData))
         }
-        else{
+        else {
             dispatch(createPost(postData))
         }
 
