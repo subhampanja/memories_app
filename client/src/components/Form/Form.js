@@ -10,6 +10,7 @@ import useStyles from "./styles"
 
 function Form({ currentId, setCurrentId }) {
 
+
     const [postData, setPostdata] = useState({
         creator: "",
         title: "",
@@ -36,13 +37,13 @@ function Form({ currentId, setCurrentId }) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (setCurrentId) {
-            alert("data have")
-            // dispatch(updatePost(setCurrentId, postData))
+        if (currentId) {
+            // alert("data have")
+            dispatch(updatePost(currentId, postData))
         }
         else {
-            alert("data dont have")
-            // dispatch(createPost(postData))
+            // alert("data dont have")
+            dispatch(createPost(postData))
         }
 
     }
@@ -55,7 +56,7 @@ function Form({ currentId, setCurrentId }) {
         <>
             <Paper className={classes.paper}>
                 <form autoComplete="off" onInvalid className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
-                    <Typography varient="h6">Create a Memory</Typography>
+                    <Typography varient="h6">{currentId ? 'Editing' : 'Creating'} a Memory</Typography>
                     <TextField name="creator" variant="outlined" label="Creator" fullWidth value={postData.creator} onChange={(e) => setPostdata({ ...postData, creator: e.target.value })} />
                     <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={(e) => setPostdata({ ...postData, title: e.target.value })} />
                     <TextField name="message" variant="outlined" label="Message" fullWidth value={postData.message} onChange={(e) => setPostdata({ ...postData, message: e.target.value })} />
