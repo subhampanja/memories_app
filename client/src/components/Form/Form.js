@@ -24,32 +24,31 @@ function Form({ currentId, setCurrentId }) {
 
     useEffect(() => {
         if (post) setPostdata(post)
-    }, [post])
+    }, [currentId, post])
 
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-
-    //     dispatch(createPost(postData))
-
-    // }
-    
     const handleSubmit = (e) => {
         e.preventDefault();
 
         if (currentId) {
-            // alert("data have")
             dispatch(updatePost(currentId, postData))
         }
         else {
-            // alert("data dont have")
             dispatch(createPost(postData))
         }
 
+        clear();
     }
 
     const clear = () => {
-
+        setCurrentId(null);
+        setPostdata({
+            creator: "",
+            title: "",
+            message: "",
+            tags: "",
+            selectedFile: ""
+        })
     }
 
     return (
